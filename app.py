@@ -97,7 +97,7 @@ input {
 st.title("🐒 MONKY EEPROM LAB")
 
 st.markdown(
-    "### ECU / EEPROM Binary Memory Analyzer"
+    "### ECU / EEPROM Binary Memory Analyzer B"
 )
 
 st.caption("Concept by Ariel Calacaterra")
