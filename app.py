@@ -10,7 +10,7 @@ import random
 # ============================================================
 
 st.set_page_config(
-    page_title="Monky2 BIN Analyzer",
+    page_title="Monky2 BIN Analyzer B",
     page_icon="",
     layout="wide"
 )
