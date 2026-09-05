@@ -378,3 +378,83 @@ st.dataframe(
     ]],
     use_container_width=True
 )
+
+# ============================================================
+# CREAR COPIA MODIFICABLE DEL BIN
+# ============================================================
+
+datos_modificados = bytearray(datos)
+
+
+# ============================================================
+# ESCRIBIR CAMBIOS DEL PRIMER DATAFRAME
+# ============================================================
+
+for _, fila in resultado.iterrows():
+
+    direccion = int(
+        fila["Direccion_decimal"]
+    )
+
+    nuevo_valor = int(
+        nuevov
+    )
+
+    struct.pack_into(
+        "<I",
+        datos_modificados,
+        direccion,
+        nuevo_valor
+    )
+
+
+# ============================================================
+# ESCRIBIR CAMBIOS DEL SEGUNDO DATAFRAME
+# ============================================================
+
+for _, fila in df_metros.iterrows():
+
+    direccion = int(
+        fila["Direccion_decimal"]
+    )
+
+    nuevo_metros = int(
+        fila["Metros"]
+    )
+
+    struct.pack_into(
+        "<I",
+        datos_modificados,
+        direccion,
+        nuevo_metros
+    )
+
+
+# ============================================================
+# DESCARGAR BIN MODIFICADO
+# ============================================================
+
+st.download_button(
+    label="Descargar BIN modificado",
+    data=bytes(datos_modificados),
+    file_name="EEPROM_MODIFICADO.bin",
+    mime="application/octet-stream"
+)
+
+
+# ============================================================
+# RESULTADO FINAL
+# ============================================================
+
+st.write(
+    f"Valores km modificados: {len(resultado)}"
+)
+
+st.write(
+    f"Valores metros modificados: {len(df_metros)}"
+)
+
+st.write(
+    f"Total de posiciones modificadas: "
+    f"{len(resultado) + len(df_metros)}"
+)
